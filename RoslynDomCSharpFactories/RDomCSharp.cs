@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -153,7 +154,8 @@ namespace RoslynDom.CSharp
          var compilation = CSharpCompilation.Create("MyCompilation",
                                         options: new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary),
                                         syntaxTrees: new[] { tree },
-                                        references: new[] { MetadataReference.CreateFromAssembly(typeof(object).Assembly) });
+                                        // references: new[] { MetadataReference.CreateFromAssembly(typeof(object).Assembly) });
+                                        references: new[] { MetadataReference.CreateFromFile(typeof(object).Assembly.Location) });
          var model = compilation.GetSemanticModel(tree);
          var root = corporation.Create(tree.GetCompilationUnitRoot(), null, model).FirstOrDefault() as IRoot;
          //var root = corporation.CreateFrom<IRoot>(tree.GetCompilationUnitRoot(), null, model).FirstOrDefault();
@@ -169,7 +171,8 @@ namespace RoslynDom.CSharp
             compilation = CSharpCompilation.Create("MyCompilation",
                                           options: new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary),
                                           syntaxTrees: trees,
-                                          references: new[] { MetadataReference.CreateFromAssembly(typeof(object).Assembly) });
+                                          // references: new[] { MetadataReference.CreateFromAssembly(typeof(object).Assembly) });
+                                          references: new[] { MetadataReference.CreateFromFile(typeof(object).Assembly.Location) });
          }
          var group = corporation.CreateCompilation(compilation, null, null);
 
