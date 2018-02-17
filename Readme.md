@@ -1,3 +1,9 @@
+Updates
+---
+17th Feb, 2018
+- Upgraded to framework 4.6
+- Updated references to version 2.6.1 of Microsft compilers platform.
+
 RoslynDom
 =========
 This provides programmer friendly view of your application via the .NET Compiler Platform (code named Roslyn) from Microsoft. 
